@@ -20,16 +20,26 @@ const exclaim = function(x) {
 };
 
 /**
- * the g will run before the f, creating a right to left flow of data.
- */
-const shout = compose(exclaim, toUpperCase);
-
-/**
  * Inside to outside function
  */
 const no_composed_shout = function(x) {
   return exclaim(toUpperCase(x));
 };
 
-console.log(shout("send in the clowns"));
+console.log('inside to outside function', no_composed_shout("send in the clowns"));
+//=> "SEND IN THE CLOWNS!"
+
+
+/**
+ * the g will run before the f, creating a right to left flow of data.
+ */
+const shout = compose(exclaim, toUpperCase);
+const reverse_shout = compose(toUpperCase, exclaim);
+
+
+
+console.log('composed function', shout("send in the clowns"));
+//=> "SEND IN THE CLOWNS!"
+
+console.log('reversed composed function', reverse_shout("send in the clowns"));
 //=> "SEND IN THE CLOWNS!"
