@@ -6,16 +6,16 @@
   - The composition of two functions, returns a function.
  */
 
-const compose = function(f, g) {
+const compose = (f, g) => {
   return function(x) {
     return f(g(x));
   };
 };
 
-const toUpperCase = function(x) {
+const toUpperCase = (x) => {
   return x.toUpperCase();
 };
-const exclaim = function(x) {
+const exclaim = (x) => {
   return x + '!';
 };
 
@@ -23,6 +23,14 @@ const exclaim = function(x) {
  * the g will run before the f, creating a right to left flow of data.
  */
 const shout = compose(exclaim, toUpperCase);
+
+/**
+ * Inside to outside function
+ */
+const no_composed_shout = function(x) {
+  return exclaim(toUpperCase(x));
+};
+
 
 console.log(shout("send in the clowns"));
 //=> "SEND IN THE CLOWNS!"
