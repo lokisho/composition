@@ -24,5 +24,12 @@ const exclaim = function(x) {
  */
 const shout = compose(exclaim, toUpperCase);
 
+/**
+ * Inside to outside function
+ */
+const no_composed_shout = function(x) {
+  return exclaim(toUpperCase(x));
+};
+
 console.log(shout("send in the clowns"));
 //=> "SEND IN THE CLOWNS!"
