@@ -1,11 +1,8 @@
 // Slide_3
 // Associative.
 
-const compose = (f, g) => {
-  return function(x) {
-    return f(g(x));
-  };
-};
+const _ = require('lodash');
+const R = require('ramda');
 
 const head = (x) => {
   return x[0];
@@ -17,23 +14,24 @@ const reverse = (x) => x.reduce( (acc, i) => {
 
 const toUpperCase = (x) => x.toUpperCase();
 
-// Composition is associative, meaning it doesn't matter how you group two of them.
-// The associative property is a math rule that says that the way in which factors are grouped
-// in a multiplication/addition problem does not change the product.
-// So, should we choose to uppercase the string, we can write:
+const exclaim = (x)  => x + '!';
 
-const lastUpper_1 = compose(toUpperCase, compose(head, reverse));
-console.log('compose_1', lastUpper_1(['jumpkick', 'roundhouse', 'uppercut']));
-// UPPERCUT
-const lastUpper_2 = compose (compose(toUpperCase, head), reverse);
-console.log('compose_2', lastUpper_2(['jumpkick', 'roundhouse', 'uppercut']));
-// UPPERCUT
+// For lodash we have flow & flowRight.
 
-// Since it doesn't matter how we group our calls to compose, the result will be the same.
-// That allows us to write a variadic compose
-//  we can give compose as many fn's as we like and let it decide how to group them.
-const compose_variadic = (...fns) => (...args) => fns.reduceRight((res, fn) => [fn.call(null, ...res)], args)[0];
+const flowRight = _.flowRight(exclaim, toUpperCase, head, reverse);
+console.log('flowRight', flowRight(['jumpkick', 'roundhouse', 'uppercut']));
+// UPPERCUT!
 
-lastUpper = compose_variadic(toUpperCase, head, reverse);
-console.log('compose_variadic', lastUpper(['jumpkick', 'roundhouse', 'uppercut']));
-// UPPERCUT
+const flow = _.flow(reverse, head, toUpperCase, exclaim);
+console.log('flow', flow(['jumpkick', 'roundhouse', 'uppercut']));
+// UPPERCUT!
+
+// For ramda we have compose & pipe
+
+const compose = R.compose(exclaim, toUpperCase, head, reverse);
+console.log('compose', compose(['jumpkick', 'roundhouse', 'uppercut']));
+// UPPERCUT!
+
+const pipe = R.pipe(reverse, head, toUpperCase, exclaim);
+console.log('pipe', pipe(['jumpkick', 'roundhouse', 'uppercut']));
+// UPPERCUT!
