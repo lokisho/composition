@@ -1,37 +1,39 @@
-// Slide_3
-// Associative.
+// Slide_5
+// PointFree / Currying.
 
-const _ = require('lodash');
-const R = require('ramda');
+const { compose, join, map, pipe, replace, split } = require('ramda');
 
-const head = (x) => {
-  return x[0];
+const toLowerCase = (x) => x.toLowerCase();
+const toUpperCase = (x) => x.toUpperCase();
+const head = (x) => x[0];
+
+// Pointfree means functions that never mention the data upon which they operate
+//not pointfree because we mention the data: word
+const snakeCase = function(word) {
+  return word.toLowerCase().replace(/\s+/ig, '_');
 };
 
-const reverse = (x) => x.reduce( (acc, i) => {
-  return [i].concat(acc);
-}, []);
+// pointfree + currying
+const pointfreeSnakeCase = compose(replace(/\s+/ig, '_'), toLowerCase);
 
-const toUpperCase = (x) => x.toUpperCase();
+console.log('point', snakeCase('to Snake Case'));
+console.log('pointFree', pointfreeSnakeCase('to Snake Case'));
 
-const exclaim = (x)  => x + '!';
+// we don't need the data to construct our function in the pointfree version,
+// whereas in the pointful one, we must have our `word` available before anything else.
+// this help us remove needless names and keep us concise and generic
 
-// For lodash we have flow & flowRight.
+//not pointfree because we mention the data: name
+const initials = (name) => name.split(' ').map(pipe(head, toUpperCase)).join('. ');
+console.log('initials', initials("hunter stockton thompson"));
+// 'H. S. T'
 
-const flowRight = _.flowRight(exclaim, toUpperCase, head, reverse);
-console.log('flowRight', flowRight(['jumpkick', 'roundhouse', 'uppercut']));
-// UPPERCUT!
+//pointfree
+const pointfreeInitials = pipe(
+    split(' '),
+    map(pipe(head, toUpperCase)),
+    join('. ')
+);
 
-const flow = _.flow(reverse, head, toUpperCase, exclaim);
-console.log('flow', flow(['jumpkick', 'roundhouse', 'uppercut']));
-// UPPERCUT!
-
-// For ramda we have compose & pipe
-
-const compose = R.compose(exclaim, toUpperCase, head, reverse);
-console.log('compose', compose(['jumpkick', 'roundhouse', 'uppercut']));
-// UPPERCUT!
-
-const pipe = R.pipe(reverse, head, toUpperCase, exclaim);
-console.log('pipe', pipe(['jumpkick', 'roundhouse', 'uppercut']));
-// UPPERCUT!
+console.log('initialsPointfree', pointfreeInitials("hunter stockton thompson"));
+// 'H. S. T'
