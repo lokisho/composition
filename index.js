@@ -1,5 +1,5 @@
-// Slide_1
-// Basic compose function
+// Slide_2
+// Order Matters.
 
 /*
   Characteristics:
@@ -12,25 +12,17 @@ const compose = (f, g) => {
   };
 };
 
-const toUpperCase = (x) => {
-  return x.toUpperCase();
-};
-const exclaim = (x) => {
-  return x + '!';
+const head = (x) => {
+  return x[0];
 };
 
-/**
- * the g will run before the f, creating a right to left flow of data.
- */
-const shout = compose(exclaim, toUpperCase);
+const reverse = (x) => x.reduce( (acc, i) => {
+  return [i].concat(acc);
+}, []);
 
-/**
- * Inside to outside function
- */
-const no_composed_shout = function(x) {
-  return exclaim(toUpperCase(x));
-};
+const last = compose(head, reverse);
+console.log(last(['jumpkick', 'roundhouse', 'uppercut']));
+//=> 'uppercut'
 
-
-console.log(shout("send in the clowns"));
-//=> "SEND IN THE CLOWNS!"
+const reverse_last = compose(reverse, head);
+// console.log(reverse_last(['jumpkick', 'roundhouse', 'uppercut']));
