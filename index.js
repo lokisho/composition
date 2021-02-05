@@ -1,37 +1,15 @@
-// Slide_3
-// Associative.
+// Slide_7
+// Async.
 
-const _ = require('lodash');
 const R = require('ramda');
+const _ = require('lodash');
 
-const head = (x) => {
-  return x[0];
-};
+const head = async (x) => x[0];
+const reverse = async (x) => x.reduce( (acc, i) => [i].concat(acc), []);
+const toUpperCase = async (x) => x.toUpperCase();
+const exclaim = async (x)  => x + '!';
 
-const reverse = (x) => x.reduce( (acc, i) => {
-  return [i].concat(acc);
-}, []);
-
-const toUpperCase = (x) => x.toUpperCase();
-
-const exclaim = (x)  => x + '!';
-
-// For lodash we have flow & flowRight.
-
-const flowRight = _.flowRight(exclaim, toUpperCase, head, reverse);
-console.log('flowRight', flowRight(['jumpkick', 'roundhouse', 'uppercut']));
-// UPPERCUT!
-
-const flow = _.flow(reverse, head, toUpperCase, exclaim);
-console.log('flow', flow(['jumpkick', 'roundhouse', 'uppercut']));
-// UPPERCUT!
-
-// For ramda we have compose & pipe
-
-const compose = R.compose(exclaim, toUpperCase, head, reverse);
-console.log('compose', compose(['jumpkick', 'roundhouse', 'uppercut']));
-// UPPERCUT!
-
-const pipe = R.pipe(reverse, head, toUpperCase, exclaim);
+const pipe = _.pipeP(reverse, head, toUpperCase, exclaim);
 console.log('pipe', pipe(['jumpkick', 'roundhouse', 'uppercut']));
+// pipe(['jumpkick', 'roundhouse', 'uppercut']).then(data => console.log(data));
 // UPPERCUT!
