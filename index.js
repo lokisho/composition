@@ -34,12 +34,10 @@ console.log('inside to outside function', no_composed_shout("send in the clowns"
  * the g will run before the f, creating a right to left flow of data.
  */
 const shout = compose(exclaim, toUpperCase);
-const reverse_shout = compose(toUpperCase, exclaim);
-
-
 
 console.log('composed function', shout("send in the clowns"));
 //=> "SEND IN THE CLOWNS!"
 
-console.log('reversed composed function', reverse_shout("send in the clowns"));
+//const reverse_shout = compose(toUpperCase, exclaim);
+//console.log('reversed composed function', reverse_shout("send in the clowns"));
 //=> "SEND IN THE CLOWNS!"
