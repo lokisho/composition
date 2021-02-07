@@ -9,7 +9,7 @@ const reverse = async (x) => x.reduce( (acc, i) => [i].concat(acc), []);
 const toUpperCase = async (x) => x.toUpperCase();
 const exclaim = async (x)  => x + '!';
 
-const pipe = _.pipeP(reverse, head, toUpperCase, exclaim);
+const pipe = R.pipe(reverse, head, toUpperCase, exclaim);
 console.log('pipe', pipe(['jumpkick', 'roundhouse', 'uppercut']));
 // pipe(['jumpkick', 'roundhouse', 'uppercut']).then(data => console.log(data));
 // UPPERCUT!
