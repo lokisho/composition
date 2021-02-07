@@ -1,16 +1,12 @@
-// Slide_3
-// Associative.
+// Slide_4
+// Utility Libraries.
 
 const _ = require('lodash');
 const R = require('ramda');
 
-const head = (x) => {
-  return x[0];
-};
+const head = (x) => x[0];
 
-const reverse = (x) => x.reduce( (acc, i) => {
-  return [i].concat(acc);
-}, []);
+const reverse = (x) => x.reduce( (acc, i) => [i].concat(acc), []);
 
 const toUpperCase = (x) => x.toUpperCase();
 
@@ -29,9 +25,9 @@ console.log('flow', flow(['jumpkick', 'roundhouse', 'uppercut']));
 // For ramda we have compose & pipe
 
 const compose = R.compose(exclaim, toUpperCase, head, reverse);
-console.log('compose', compose(['jumpkick', 'roundhouse', 'uppercut']));
+//console.log('compose', compose(['jumpkick', 'roundhouse', 'uppercut']));
 // UPPERCUT!
 
 const pipe = R.pipe(reverse, head, toUpperCase, exclaim);
-console.log('pipe', pipe(['jumpkick', 'roundhouse', 'uppercut']));
+// console.log('pipe', pipe(['jumpkick', 'roundhouse', 'uppercut']));
 // UPPERCUT!
