@@ -16,10 +16,10 @@ const reverse = (x) => x.reduce( (acc, i) => {
 const toUpperCase = (x) => x.toUpperCase();
 
 const exclaim = (x)  => x + '!';
+
 // Composition is associative, meaning it doesn't matter how you group two of them.
 // The associative property is a math rule that says that the way in which factors are grouped
 // in a multiplication/addition problem does not change the product.
-// So, should we choose to uppercase the string, we can write:
 
 const lastUpper_1 = compose(toUpperCase, compose(head, reverse));
 console.log('compose_1', lastUpper_1(['jumpkick', 'roundhouse', 'uppercut']));
@@ -34,24 +34,24 @@ console.log('compose_2', lastUpper_2(['jumpkick', 'roundhouse', 'uppercut']));
 const compose_variadic = (...fns) => (...args) => fns.reduceRight((res, fn) => [fn.call(null, ...res)], args)[0];
 
 const lastUpper = compose_variadic(toUpperCase, head, reverse);
-console.log('compose_variadic', lastUpper(['jumpkick', 'roundhouse', 'uppercut']));
+//console.log('compose_variadic', lastUpper(['jumpkick', 'roundhouse', 'uppercut']));
 // UPPERCUT
 
 // One pleasant benefit of associativity is that any group of functions can be extracted and bundled together
 // in their very own composition.  Here we start playing with our lego.
 let loudLastUpper = compose_variadic(exclaim, toUpperCase, head, reverse);
-console.log('lego_1', loudLastUpper(['jumpkick', 'roundhouse', 'uppercut']));
+//console.log('lego_1', loudLastUpper(['jumpkick', 'roundhouse', 'uppercut']));
 // UPPERCUT!
 
 // or
 let last = compose(head, reverse);
 loudLastUpper = compose_variadic(exclaim, toUpperCase, last);
-console.log('lego_2', loudLastUpper(['jumpkick', 'roundhouse', 'uppercut']));
+//console.log('lego_2', loudLastUpper(['jumpkick', 'roundhouse', 'uppercut']));
 // UPPERCUT!
 
 // or
 last = compose(head, reverse);
 let angry = compose(exclaim, toUpperCase);
 loudLastUpper = compose(angry, last);
-console.log('lego_2', loudLastUpper(['jumpkick', 'roundhouse', 'uppercut']));
+//console.log('lego_2', loudLastUpper(['jumpkick', 'roundhouse', 'uppercut']));
 // UPPERCUT!
