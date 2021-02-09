@@ -6,18 +6,10 @@
   - The composition of two functions, returns a function.
  */
 
-const compose = function(f, g) {
-  return function(x) {
-    return f(g(x));
-  };
-};
+const compose = (f, g) =>  (x)  => f(g(x));
 
-const toUpperCase = function(x) {
-  return x.toUpperCase();
-};
-const exclaim = function(x) {
-  return x + '!';
-};
+const toUpperCase = (x) => x.toUpperCase();
+const exclaim = (x) => x + '!';
 
 /**
  * Inside to outside function
