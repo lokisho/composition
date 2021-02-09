@@ -8,7 +8,7 @@ const toUpperCase = (x) => x.toUpperCase();
 const head = (x) => x[0];
 
 // Pointfree means functions that never mention the data upon which they operate
-//not pointfree because we mention the data: word
+// pointful because we mention the data: word
 const snakeCase = function(word) {
   return word.toLowerCase().replace(/\s+/ig, '_');
 };
@@ -25,7 +25,7 @@ console.log('pointFree', pointfreeSnakeCase('to Snake Case'));
 
 //not pointfree because we mention the data: name
 const initials = (name) => name.split(' ').map(pipe(head, toUpperCase)).join('. ');
-console.log('initials', initials("hunter stockton thompson"));
+// console.log('initials', initials("hunter stockton thompson"));
 // 'H. S. T'
 
 //pointfree
@@ -35,5 +35,5 @@ const pointfreeInitials = pipe(
     join('. ')
 );
 
-console.log('initialsPointfree', pointfreeInitials("hunter stockton thompson"));
+//console.log('initialsPointfree', pointfreeInitials("hunter stockton thompson"));
 // 'H. S. T'
