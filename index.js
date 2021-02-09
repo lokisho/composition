@@ -6,16 +6,9 @@
   - The composition of two functions, returns a function.
  */
 
-const compose = (f, g) => {
-  return function(x) {
-    return f(g(x));
-  };
-};
+const compose = (f, g) =>  (x)  => f(g(x));
 
-const head = (x) => {
-  return x[0];
-};
-
+const head = (x) => x[0];
 const reverse = (x) => x.reduce( (acc, i) => {
   return [i].concat(acc);
 }, []);
