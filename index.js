@@ -1,20 +1,11 @@
 // Slide_3
 // Associative.
 
-const compose = (f, g) => {
-  return function(x) {
-    return f(g(x));
-  };
-};
+const compose = (f, g) => (x) => f(g(x));
 
 const head = (x) => x[0];
-
-const reverse = (x) => x.reduce( (acc, i) => {
-  return [i].concat(acc);
-}, []);
-
+const reverse = (x) => x.reduce( (acc, i) => [i].concat(acc), []);
 const toUpperCase = (x) => x.toUpperCase();
-
 const exclaim = (x)  => x + '!';
 
 // Composition is associative, meaning it doesn't matter how you group two of them.
