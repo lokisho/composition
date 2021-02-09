@@ -42,7 +42,6 @@ const getPet = (typeOfPet: string) : Dog | Snake | Fish => {
   return petsAvailable[typeOfPet] ?? petsAvailable.fish;
 }
 
-const getFish = ():Fish => ({river: true});
 alert(getPet('dog'));
 
 // const compose = R.pipe(getPet, alert);
