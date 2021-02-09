@@ -9,9 +9,7 @@
 const compose = (f, g) =>  (x)  => f(g(x));
 
 const head = (x) => x[0];
-const reverse = (x) => x.reduce( (acc, i) => {
-  return [i].concat(acc);
-}, []);
+const reverse = (x) => x.reduce( (acc, i) => [i].concat(acc), []);
 
 const last = compose(head, reverse);
 console.log(last(['jumpkick', 'roundhouse', 'uppercut']));
