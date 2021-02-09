@@ -7,10 +7,7 @@ const trace = (tag) => (x) => {
     console.log(tag, x);
     return x;
 };
-// const trace = curry(function(tag, x) {
-//   console.log(tag, x);
-//   return x;
-// });
+
 let desherize;
 dasherize = compose(join('-'), toLower, split(' '), replace(/\s{2,}/ig, ' '));
 
