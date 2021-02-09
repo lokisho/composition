@@ -53,5 +53,5 @@ loudLastUpper = compose_variadic(exclaim, toUpperCase, last);
 last = compose(head, reverse);
 let angry = compose(exclaim, toUpperCase);
 loudLastUpper = compose(angry, last);
-//console.log('lego_2', loudLastUpper(['jumpkick', 'roundhouse', 'uppercut']));
+//console.log('lego_3', loudLastUpper(['jumpkick', 'roundhouse', 'uppercut']));
 // UPPERCUT!
