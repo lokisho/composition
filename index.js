@@ -37,3 +37,7 @@ const pointfreeInitials = pipe(
 
 //console.log('initialsPointfree', pointfreeInitials("hunter stockton thompson"));
 // 'H. S. T'
+
+//Be warned, however, pointfree is a double-edged sword and can sometimes obfuscate intention.
+// Not all functional code is pointfree and that is O.K.
+// We'll shoot for it where we can and stick with normal functions otherwise.
