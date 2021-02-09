@@ -5,11 +5,7 @@ const _ = require('lodash');
 const R = require('ramda');
 
 const head = (x) => x[0];
-
 const reverse = (x) => x.reduce( (acc, i) => [i].concat(acc), []);
-
-const toUpperCase = (x) => x.toUpperCase();
-
 const exclaim = (x)  => x + '!';
 
 // For lodash we have flow & flowRight.
